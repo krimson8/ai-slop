@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>香港家庭遊 2027</title>
+<meta name="description" content="2月13日至17日 · 逸東酒店 · 國泰航空。每天的行程、地圖，還有給的士司機看的地址。">
+<meta name="theme-color" content="#A61E17">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="香港家庭遊 2027">
+<meta property="og:description" content="2月13日至17日 · 逸東酒店 · 國泰航空。每天的行程、地圖，還有給的士司機看的地址。">
+<!--OG_IMAGE-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%AE%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#FBF5EC;
+  --card:#FFFFFF;
+  --ink:#2A1D15;
+  --ink2:#4B3A2D;
+  --red:#A61E17;
+  --red-dk:#7C150F;
+  --gold:#C9952A;
+  --gold-lt:#F7E6BC;
+  --tip:#FFF3D1;
+  --tip-bd:#E2B54A;
+  --tip-ink:#5C3F00;
+  --line:#E6D8C3;
+  --alert:#FDE9E5;
+  --focus:#1B5FBF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",sans-serif;
+  font-size:22px;line-height:1.6;font-weight:400;
+  overflow-wrap:anywhere;
+}
+a{color:var(--red-dk)}
+strong{font-weight:700}
+h1,h2,h3{font-weight:700}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* 頁首 */
+.hero{
+  background:var(--red);background-image:linear-gradient(160deg,#B8261D 0%,#8E1912 100%);
+  color:#fff;text-align:center;padding:26px 16px 22px;border-bottom:6px solid var(--gold);
+}
+.hero h1{font-size:38px;line-height:1.3;margin:0;letter-spacing:2px}
+.hero .lantern{font-size:.8em;margin:0 .25em}
+.nw{white-space:nowrap}
+.hero .sub{font-size:22px;margin:6px 0 0}
+.hero .count{display:inline-block;margin:14px 0 0;background:var(--gold-lt);color:var(--ink);
+  font-weight:700;padding:6px 18px;border-radius:999px}
+.hero .count:empty{display:none}
+
+/* 分頁按鈕 */
+.tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--line);
+  box-shadow:0 3px 10px rgba(60,30,10,.08)}
+.tabs-inner{display:flex;gap:10px;overflow-x:auto;padding:10px 16px;max-width:760px;margin:0 auto;
+  -webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.tab{
+  flex:0 0 auto;min-height:64px;min-width:108px;padding:6px 14px;
+  border:2px solid var(--red);background:#fff;color:var(--red-dk);border-radius:14px;
+  font:inherit;font-size:22px;font-weight:700;line-height:1.25;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;
+}
+.tab .d{font-size:20px}
+.tab[aria-selected="true"]{background:var(--red);color:#fff}
+.tab .today{position:absolute;top:-8px;right:-6px;background:var(--gold);color:var(--ink);
+  font-size:16px;line-height:1;padding:4px 7px;border-radius:999px}
+.tab:focus-visible,.btn:focus-visible,summary:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+
+/* 內容 */
+main{max-width:760px;margin:0 auto;padding:12px 16px 32px}
+.panel[hidden]{display:none}
+.day-head h2{font-size:34px;line-height:1.35;margin:10px 0 0}
+.day-head h2 .dnum{display:block;font-size:26px;color:var(--ink2)}
+.day-head .theme{font-size:26px;font-weight:700;color:var(--red-dk);margin:2px 0 0}
+.lunar{display:inline-block;margin:8px 0 0;background:var(--gold-lt);border-radius:999px;padding:2px 14px;font-weight:700}
+.intro{margin:12px 0 0}
+.alert{background:var(--alert);border-left:6px solid var(--red);border-radius:12px;padding:12px 16px;margin:16px 0 0}
+.alert p{margin:0}
+.alert p+p{margin-top:8px}
+
+.stops{list-style:none;margin:20px 0 0;padding:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 18px;
+  box-shadow:0 1px 3px rgba(60,30,10,.06)}
+.stop-head{display:flex;align-items:flex-start;gap:14px}
+.time{flex:0 0 auto;min-width:3.1em;font-size:28px;font-weight:800;line-height:1.3;color:var(--red-dk);
+  font-variant-numeric:tabular-nums}
+.time .approx{display:block;font-size:20px;line-height:1.2}
+.card h3{font-size:28px;line-height:1.35;margin:0}
+.who{display:inline-block;margin:0 0 8px;background:var(--gold-lt);border-radius:999px;padding:2px 14px;font-weight:700}
+.photo{margin:14px 0 0}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:12px;background:#EFE6D8}
+.desc{margin:12px 0 0}
+.tip{margin:14px 0 0;background:var(--tip);border:2px solid var(--tip-bd);border-radius:12px;padding:10px 14px;color:var(--tip-ink)}
+.tip .label{display:block;font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 0}
+.btn{
+  flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:56px;padding:8px 18px;border-radius:14px;border:2px solid var(--ink);background:#fff;color:var(--ink);
+  font:inherit;font-size:22px;font-weight:700;line-height:1.3;text-align:center;text-decoration:none;cursor:pointer;
+}
+.btn-taxi{background:var(--red);border-color:var(--red);color:#fff}
+.btn-call{background:#1F6B3A;border-color:#1F6B3A;color:#fff}
+
+details.more{margin:14px 0 0;border:2px solid var(--line);border-radius:12px;background:#FFFCF6}
+details.more>summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:8px 12px 8px 14px;font-size:24px;font-weight:700}
+details.more>summary::-webkit-details-marker{display:none}
+.pm{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:32px;line-height:1;font-weight:700}
+.pm::before{content:"＋"}
+details[open]>summary .pm::before{content:"－"}
+details.more .body{padding:0 14px 14px}
+details.more .body p{margin:8px 0 0}
+details.backup{border-color:var(--gold);background:#FFF8E6}
+
+.section-title{font-size:30px;margin:28px 0 12px;line-height:1.35}
+
+/* 實用資料 */
+.info h3{font-size:28px}
+.info p{margin:8px 0 0}
+.info ul{margin:8px 0 0;padding-left:1.2em}
+.info li+li{margin-top:6px}
+.flight{border-top:2px dashed var(--line);padding-top:12px;margin-top:12px}
+.flight:first-of-type{border-top:0;padding-top:0}
+.flight .label{display:inline-block;background:var(--red);color:#fff;border-radius:8px;padding:0 12px;font-weight:700}
+.flight .date{font-weight:700;margin-left:8px}
+.leg{font-size:24px;margin-top:6px}
+.leg .t{font-weight:800;font-size:28px;color:var(--red-dk);margin-right:8px;font-variant-numeric:tabular-nums}
+.leg-mid{color:var(--ink2);margin:2px 0 2px 4px}
+.big-addr{font-size:26px;font-weight:700;margin:8px 0 0}
+.checklist{list-style:none;padding:0!important}
+.checklist li{padding-left:1.6em;position:relative}
+.checklist li::before{content:"☐";position:absolute;left:0;top:0;color:var(--red-dk);font-weight:700}
+
+/* 的士卡 */
+.taxi{position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;background:#fff;display:none;
+  flex-direction:column;padding:24px 18px;padding-bottom:calc(24px + env(safe-area-inset-bottom));overflow:auto}
+.taxi.open{display:flex}
+.taxi .ask{font-size:30px;font-weight:700;color:var(--ink2);margin:0}
+.taxi .dest{font-size:52px;font-weight:800;line-height:1.3;margin:16px 0 0;color:#000}
+.taxi .addr{font-size:42px;font-weight:700;line-height:1.4;margin:16px 0 0;color:#000}
+.taxi .thanks{font-size:30px;margin:24px 0 0;color:var(--ink2)}
+.taxi .close{flex:0 0 auto;margin-top:auto;width:100%;min-height:76px;font-size:32px}
+.taxi-spacer{flex:1 1 24px;min-height:24px}
+body.locked{overflow:hidden}
+
+footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
+.credits{font-size:16px;line-height:1.5;border-top:2px solid var(--line);padding-top:12px}
+.credits h2{font-size:20px;margin:0 0 8px}
+.credits ol{margin:0;padding-left:1.4em}
+.credits li{margin:0 0 6px}
+.credits a{color:var(--ink2)}
+
+@media (min-width:700px){
+  .hero h1{font-size:46px}
+}
+@media (max-width:360px){
+  .hero .lantern{display:none}
+  .hero h1{font-size:34px}
+  .hero .nw{white-space:normal}
+}
+@media print{
+  .tabs,.actions,.taxi{display:none!important}
+  .panel[hidden]{display:block!important}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1><span class="lantern" aria-hidden="true">🏮</span><span class="nw">香港家庭遊</span> <span class="nw">2027</span><span class="lantern" aria-hidden="true">🏮</span></h1>
+  <p class="sub"><span class="nw">2月13日至17日</span> · <span class="nw">逸東酒店</span> · <span class="nw">國泰航空</span></p>
+  <p class="count" id="count"></p>
+</header>
+
+<nav class="tabs" aria-label="選擇日子">
+  <div class="tabs-inner" id="tabs" role="tablist"></div>
+</nav>
+
+<main id="main">
+  <noscript><p class="alert">這個網頁需要開啟 JavaScript 才能顯示行程。</p></noscript>
+</main>
+
+<footer id="footer"></footer>
+
+<div class="taxi" id="taxi" role="dialog" aria-modal="true" aria-labelledby="taxi-dest" hidden>
+  <p class="ask">師傅，請載我們到：</p>
+  <p class="dest" id="taxi-dest"></p>
+  <p class="addr" id="taxi-addr"></p>
+  <p class="thanks">謝謝！</p>
+  <div class="taxi-spacer"></div>
+  <button type="button" class="btn close" id="taxi-close">關閉</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== 相片（來自 Wikimedia Commons；沒有列在這裡的就不顯示相片） ===== */
+  var PHOTOS = {};
+
+  /* ===== 常用地點 ===== */
+  var HOTEL = { name: '香港逸東酒店', addr: '九龍佐敦彌敦道380號' };
+  var HOTEL_MAP = '逸東酒店 佐敦 彌敦道380號 香港';
+
+  /* ===== 每日行程 ===== */
+  var DAYS = [
+    {
+      id: 'd1', tab: '第1天', date: '2/13（六）',
+      num: '第1天', title: '2月13日（六）', theme: '抵達・輕鬆適應', lunar: '年初八',
+      intro: '紅眼航班，大家沒睡好。今天的重點是：吃好、早點入住、睡一覺，晚上再出門。',
+      alert: [
+        '<strong>出發提醒：</strong>航班是 <strong>2月13日凌晨 02:55</strong> 起飛，所以 <strong>2月12日（五）晚上</strong>就要出門，最好半夜12點前到吉隆坡機場 T1 辦理登機。'
+      ],
+      stops: [
+        { time: '07:00', name: '抵達香港機場 T1',
+          desc: '過關、拿行李，大約一小時。',
+          tip: '洗手間在行李轉盤附近。',
+          maps: [{ q: '香港國際機場 一號客運大樓' }],
+          img: 'airport', alt: '香港國際機場一號客運大樓' },
+        { time: '08:00', name: '前往酒店',
+          desc: '<strong>建議坐的士</strong>，約40分鐘，約港幣300元加行李費，大家分攤不貴。人多行李多的話，分兩部的士。',
+          tip: '剛下紅眼機，坐的士最省力。',
+          more: { title: '想省錢：坐 A21 巴士',
+            html: '<p>在機場巴士總站坐 <strong>A21</strong> 巴士，在「<strong>彌敦酒店</strong>」站下車，過對面馬路就到酒店。約1小時，用八達通付款。</p>' },
+          taxi: HOTEL, maps: [{ q: HOTEL_MAP }] },
+        { time: '09:00', name: '逸東酒店寄存行李',
+          desc: '正式入住通常是下午，先寄存行李，問問能否提早入住。',
+          maps: [{ q: HOTEL_MAP }],
+          img: 'hotel', alt: '逸東酒店所在的佐敦彌敦道' },
+        { time: '09:30', name: '早餐：澳洲牛奶公司',
+          desc: '佐敦白加士街老字號茶餐廳，炒蛋多士、燉奶出名，酒店走路約3分鐘。人多但翻枱快。（逢星期四休息，今天是星期六沒問題）',
+          tip: '店內座位擠，坐下就好，不用久留。',
+          maps: [{ q: '澳洲牛奶公司 佐敦 白加士街 香港' }],
+          img: 'australia-dairy', alt: '港式茶餐廳的炒蛋多士' },
+        { time: '10:30', name: '尖沙咀海濱長廊・星光大道',
+          desc: '坐的士約10分鐘。全程平路、沿海有長椅，對岸就是港島的高樓。',
+          tip: '走累了隨時坐下看海。',
+          taxi: { name: '星光大道', addr: '尖沙咀海濱長廊' },
+          maps: [{ q: '星光大道 尖沙咀 香港' }],
+          img: 'avenue-of-stars', alt: '尖沙咀海濱長廊，對岸是港島的高樓' },
+        { time: '12:30', name: '午餐：海港城一帶',
+          desc: '沿海旁平路走過去約15–20分鐘。室內有冷暖氣、有座位，選擇多。',
+          maps: [{ q: '海港城 尖沙咀 廣東道 香港' }] },
+        { time: '14:30', name: '回酒店入住、休息',
+          desc: '補眠，養足精神。坐的士約10分鐘；或坐港鐵，尖沙咀站到佐敦站只有1個站。',
+          tip: '今天最重要的一站 😊',
+          taxi: HOTEL, maps: [{ q: HOTEL_MAP }] },
+        { time: '18:30', name: '晚餐：廟街煲仔飯',
+          desc: '冬天最適合吃煲仔飯，廟街一帶很多，酒店走路約8分鐘。',
+          maps: [{ q: '煲仔飯 廟街 油麻地 香港' }],
+          img: 'claypot', alt: '熱騰騰的煲仔飯' },
+        { time: '19:30', name: '廟街夜市',
+          desc: '逛逛小攤，全平路，累了隨時回酒店。',
+          tip: '人多，注意隨身財物。',
+          maps: [{ q: '廟街夜市 油麻地 香港' }],
+          img: 'temple-street', alt: '晚上的廟街夜市' },
+        { time: '20:30', name: '甜品：佳佳甜品',
+          desc: '米其林推介的老字號糖水店，芝麻糊、杏仁糊、湯圓都暖胃。2025年已搬到<strong>白加士街新店</strong>（不是舊的寧波街舖），酒店走路幾分鐘。',
+          maps: [{ q: '佳佳甜品 白加士街 佐敦 香港' }],
+          img: 'tong-sui', alt: '一碗芝麻糊' }
+      ]
+    },
+    {
+      id: 'd2', tab: '第2天', date: '2/14（日）',
+      num: '第2天', title: '2月14日（日）', theme: '香港經典一日遊', lunar: '年初九 · 情人節',
+      alert: [
+        '<strong>山頂纜車票</strong>要提前在網上訂好指定時段。',
+        '今天是<strong>情人節</strong>，晚上餐廳特別多人，想坐下吃熱門餐廳要<strong>先訂位</strong>。'
+      ],
+      stops: [
+        { time: '09:00', name: '佐敦站出發',
+          desc: '坐港鐵<strong>荃灣線（紅色）</strong>往中環方向，3個站到<strong>中環站</strong>。',
+          maps: [{ q: '港鐵佐敦站 香港' }] },
+        { time: '09:45', name: '山頂纜車上太平山',
+          desc: '<strong>一定要提前在網上訂好指定時段的票</strong>，星期日現場排隊可能超過一小時。從中環站走到花園道纜車總站約10–15分鐘，有點上坡；不想走路可以坐的士。',
+          tip: '纜車很斜，上車後坐穩。坐<strong>右手邊</strong>，上山時看得到海景。',
+          taxi: { name: '山頂纜車 花園道總站', addr: '中環花園道33號' },
+          maps: [{ q: '山頂纜車 花園道總站 香港' }],
+          img: 'peak-tram', alt: '紅色的山頂纜車' },
+        { time: '10:30', name: '山頂看維港',
+          desc: '凌霄閣觀景台要收費；旁邊<strong>山頂廣場天台免費</strong>，有座位、人較少，景色差不多。',
+          tip: '山頂比市區冷，穿外套。',
+          maps: [{ q: '山頂廣場 太平山 香港' }],
+          img: 'peak-view', alt: '從太平山頂望向維多利亞港' },
+        { time: '12:30', name: '午餐：蓮香樓（上環新店）',
+          desc: '百年老茶樓，傳統點心，坐著慢慢吃。<strong>2026年5月已從中環威靈頓街搬到上環德輔道中</strong>，不要去舊址。從山頂下來坐的士約20分鐘。',
+          tip: '如果有點心車經過，直接揭蓋看，喜歡就拿。',
+          taxi: { name: '蓮香樓', addr: '上環德輔道中249–251號 東寧大廈' },
+          maps: [{ q: '蓮香樓 德輔道中249號 上環 香港' }],
+          img: 'dim-sum', alt: '茶樓的點心' },
+        { time: '14:30', name: '叮叮電車（上環 → 銅鑼灣）',
+          desc: '蓮香樓門前的德輔道中就有電車經過。坐往東走、車頭寫「<strong>筲箕灣</strong>」或「<strong>北角</strong>」的電車，坐上層前排，全程坐著看街景，約40分鐘到銅鑼灣。用八達通付款。',
+          tip: '上層樓梯窄，扶好扶手；不想上樓坐下層也可以。後門上車、前門下車，下車時拍八達通。',
+          maps: [{ q: '電車站 德輔道中 上環 香港' }],
+          img: 'tram', alt: '香港的雙層叮叮電車' },
+        { time: '16:00', name: '銅鑼灣・時代廣場一帶',
+          desc: '隨意逛逛。爸媽累的話可以先坐港鐵回酒店休息，晚上再會合。',
+          tip: '回酒店：銅鑼灣站坐港島線，在金鐘站轉荃灣線到佐敦站，約25分鐘。',
+          maps: [{ q: '時代廣場 銅鑼灣 香港' }],
+          img: 'causeway-bay', alt: '銅鑼灣的街景' },
+        { time: '17:30', name: '天星小輪（中環7號碼頭 → 尖沙咀）',
+          desc: '幾塊錢就能遊維港，傍晚時分最美（日落大約18:20）。從銅鑼灣坐港鐵到中環站，再走到7號碼頭約10分鐘；或直接坐的士。',
+          tip: '船上風大，拉好外套。',
+          taxi: { name: '中環天星碼頭', addr: '中環7號碼頭' },
+          maps: [{ q: '天星小輪 中環7號碼頭 香港' }],
+          img: 'star-ferry', alt: '綠白色的天星小輪' },
+        { time: '18:30', name: '晚餐：尖沙咀',
+          desc: '今天是情人節，熱門餐廳要早點訂位。',
+          maps: [{ q: '尖沙咀天星碼頭 香港' }] },
+        { time: '19:45', name: '尖沙咀海濱・幻彩詠香江',
+          desc: '每晚八點的燈光音樂匯演，約10分鐘。沿路都有長椅。看完坐的士回酒店約10分鐘。',
+          tip: '早一點到，搶個有座位的位置。',
+          taxi: HOTEL, taxiLabel: '🚕 回酒店（給司機看）',
+          maps: [{ q: '幻彩詠香江 尖沙咀海濱長廊 香港' }],
+          img: 'symphony', alt: '維多利亞港的夜景' }
+      ]
+    },
+    {
+      id: 'd3', tab: '第3天', date: '2/15（一）',
+      num: '第3天', title: '2月15日（一）', theme: '澳門一日遊', lunar: '年初十',
+      intro: '選星期一是因為週末船班和澳門人潮都比較多。這是整個行程最累的一天，早上要早出門。',
+      alert: [
+        '<strong>今天一定要帶護照！</strong>（馬來西亞護照進澳門免簽）',
+        '<strong>去程、回程船票都要提前網上訂：</strong>去程「上環 → 澳門外港」，回程「氹仔 → 上環」。'
+      ],
+      stops: [
+        { time: '07:30', name: '酒店出發 → 上環港澳碼頭',
+          desc: '坐的士到上環<strong>信德中心「港澳碼頭」</strong>，過海約20–25分鐘。',
+          tip: '出門前再檢查一次：<strong>護照</strong>、船票。',
+          taxi: { name: '港澳碼頭（信德中心）', addr: '上環干諾道中200號' },
+          maps: [{ q: '港澳碼頭 信德中心 上環 香港' }] },
+        { time: '08:30', approx: true, name: '坐噴射飛航去澳門（外港碼頭）',
+          desc: '上環開往<strong>澳門外港碼頭</strong>，早上班次多，訂8點半左右那班就好（以訂到的船票時間為準）。航程約1小時。開船前約30分鐘到碼頭過關。',
+          tip: '上船前先去洗手間。開船後坐穩，不要走來走去。',
+          maps: [{ q: '港澳碼頭 信德中心 上環 香港' }],
+          img: 'turbojet', alt: '往來港澳的噴射飛航客船' },
+        { time: '10:00', approx: true, name: '抵達澳門外港碼頭',
+          desc: '過澳門入境，然後坐的士到議事亭前地，約10分鐘。',
+          taxi: { name: '議事亭前地', addr: '澳門新馬路' },
+          maps: [{ q: '外港客運碼頭 澳門' }] },
+        { time: '10:30', name: '議事亭前地、大三巴牌坊',
+          desc: '世界文化遺產。從議事亭前地沿著石板路慢慢走上大三巴，約10分鐘，沿路有手信店。石板路有點不平，慢慢走。',
+          tip: '大三巴前的長樓梯不用勉強爬，在下面拍照就很好看。',
+          maps: [{ label: '議事亭前地', q: '議事亭前地 澳門' }, { label: '大三巴', q: '大三巴牌坊 澳門' }],
+          img: 'ruins-st-pauls', alt: '澳門大三巴牌坊' },
+        { time: '12:30', name: '午餐：澳門葡國菜',
+          desc: '試試葡國雞、馬介休、葡撻。',
+          maps: [{ q: '葡國菜 議事亭前地 澳門' }],
+          img: 'egg-tart', alt: '剛出爐的葡撻' },
+        { time: '14:30', name: '威尼斯人／倫敦人',
+          desc: '從市中心坐的士約20分鐘到路氹。全室內、平路、有暖氣，有很多座位可以休息。',
+          taxi: { name: '澳門威尼斯人', addr: '路氹金光大道' },
+          maps: [{ label: '威尼斯人', q: '澳門威尼斯人' }, { label: '倫敦人', q: '澳門倫敦人' }],
+          img: 'venetian', alt: '澳門威尼斯人度假村' },
+        { time: '17:30', name: '金光大道晚餐',
+          desc: '在度假村裡選一間吃。',
+          maps: [{ q: '金光大道 路氹 澳門' }] },
+        { time: '20:00', approx: true, name: '氹仔碼頭坐船回香港（→ 上環）',
+          desc: '從度假村坐的士到<strong>氹仔客運碼頭</strong>約10分鐘。金光飛航、噴射飛航都有船回上環，航程約1小時。<strong>回程船票也要先訂好</strong>。',
+          tip: '度假村的免費穿梭巴士路線常有變動，想坐的話先問酒店大堂。',
+          taxi: { name: '氹仔客運碼頭', addr: '澳門氹仔北安' },
+          maps: [{ q: '氹仔客運碼頭 澳門' }] },
+        { time: '21:30', approx: true, name: '回到上環，坐的士回酒店',
+          desc: '過海約20–25分鐘，大約晚上十點回到酒店。',
+          tip: '今天最累，回酒店早點休息。',
+          taxi: HOTEL, taxiLabel: '🚕 回酒店（給司機看）',
+          maps: [{ q: HOTEL_MAP }] }
+      ],
+      backup: {
+        title: '後備方案：大嶼山昂坪（比較輕鬆）',
+        html: '<p>如果爸媽覺得澳門太累，可以改去<strong>大嶼山昂坪</strong>：坐<strong>昂坪360纜車</strong>全程坐著看風景，參觀<strong>寶蓮寺</strong>，<strong>天壇大佛</strong>可以在下面看，不一定要爬樓梯。體力消耗大概只有澳門的一半。</p>' +
+              '<p>去法：坐港鐵到<strong>東涌站</strong>（在荔景站轉東涌線），走幾分鐘到纜車站。纜車票也建議網上預訂。</p>',
+        maps: [{ label: '昂坪360', q: '昂坪360 東涌纜車站 香港' }, { label: '天壇大佛', q: '天壇大佛 昂坪 香港' }],
+        img: 'ngong-ping', alt: '昂坪天壇大佛'
+      }
+    },
+    {
+      id: 'd4', tab: '第4天', date: '2/16（二）',
+      num: '第4天', title: '2月16日（二）', theme: '自由活動', lunar: '正月十一',
+      intro: '今天各自選喜歡的，<strong>下午四點半在九龍公園集合</strong>。',
+      options: [
+        { who: '適合媽媽', name: '掃貨：鴨脷洲海怡工貿中心 Horizon Plaza',
+          desc: '一整棟大廈的過季名牌倉庫，折扣最大。從佐敦坐的士約30分鐘，或港鐵到海怡半島站再走一段。',
+          tip: '整棟樓上上落落比較累，建議早上去、帶水。',
+          taxi: { name: '海怡工貿中心', addr: '鴨脷洲利榮街2號' },
+          maps: [{ q: '海怡工貿中心 鴨脷洲 香港' }],
+          img: 'horizon-plaza', alt: '鴨脷洲的海怡工貿中心' },
+        { who: '適合媽媽（輕鬆版）', name: '掃貨：尖沙咀海港城',
+          desc: '酒店附近就有，品牌多，室內有座位，不用跑遠。',
+          maps: [{ q: '海港城 尖沙咀 廣東道 香港' }],
+          img: 'harbour-city', alt: '尖沙咀海港城' },
+        { who: '適合爸爸', name: '油麻地老區散步＋飲茶',
+          desc: '油麻地果欄、玉器市場、榕樹頭，都在酒店附近散步範圍；中午找一間茶樓坐下慢慢吃。',
+          maps: [{ label: '果欄', q: '油麻地果欄 香港' }, { label: '玉器市場', q: '玉器市場 油麻地 香港' }, { label: '榕樹頭', q: '榕樹頭 油麻地天后廟 香港' }],
+          img: 'yau-ma-tei', alt: '油麻地果欄' },
+        { who: '適合想新年拜拜、求籤的人', name: '黃大仙祠',
+          desc: '正值農曆新年，香火鼎盛、氣氛熱鬧。港鐵黃大仙站出口走幾分鐘就到，從佐敦轉一次車。人多，早上去比較好。',
+          tip: '坐法：荃灣線到<strong>太子站</strong>，轉觀塘線（往調景嶺方向）到<strong>黃大仙站</strong>。',
+          taxi: { name: '黃大仙祠', addr: '九龍黃大仙竹園村2號' },
+          maps: [{ q: '黃大仙祠 香港' }],
+          img: 'wong-tai-sin', alt: '黃大仙祠' }
+      ],
+      stops: [
+        { time: '16:30', name: '集合：九龍公園',
+          desc: '平路、有樹蔭和長椅，離尖沙咀站很近。建議在<strong>尖沙咀站 A1 出口（九龍清真寺旁）</strong>等齊，再一起走進公園。',
+          maps: [{ q: '九龍公園 尖沙咀 香港' }],
+          img: 'kowloon-park', alt: '九龍公園' },
+        { time: '19:00', name: '全家晚餐：尖沙咀',
+          desc: '最後一晚，大家一起好好吃一頓。（餐廳待定）',
+          maps: [{ q: '尖沙咀 香港' }] }
+      ]
+    },
+    {
+      id: 'd5', tab: '第5天', date: '2/17（三）',
+      num: '第5天', title: '2月17日（三）', theme: '退房・東涌掃貨・回家', lunar: '正月十二',
+      intro: '航班 <strong>17:30</strong> 起飛。我們先在市區把行李寄掉，然後空手去東涌逛 outlet，最後從東涌直接去機場。',
+      alert: ['最晚 <strong>15:00 前</strong>一定要到機場！'],
+      stops: [
+        { time: '09:00', name: '逸東酒店退房',
+          desc: '坐的士去九龍站，約10分鐘。',
+          tip: '退房前檢查：護照、手機、充電器。',
+          taxi: { name: '九龍站（機場快線）', addr: '柯士甸道西1號' },
+          maps: [{ q: HOTEL_MAP }] },
+        { time: '09:30', name: '九龍站「市區預辦登機」',
+          desc: '國泰在九龍站有櫃位（每天約早上6點至下午3點，最遲航班起飛前90分鐘），在這裡就能<strong>寄行李、拿登機證</strong>。要有機場快線車票（或用八達通）才能進入。',
+          tip: '寄完行李就輕鬆了。護照要隨身帶，不要放進大行李。',
+          maps: [{ q: '九龍站 機場快線 市區預辦登機 香港' }],
+          img: 'kowloon-station', alt: '機場快線列車' },
+        { time: '10:00', name: '機場快線 → 機場，再轉 S1 巴士 → 東涌',
+          desc: '機場快線約20分鐘；到機場後在巴士總站坐 <strong>S1 巴士</strong>，約10分鐘到東涌。',
+          maps: [{ q: '香港國際機場 巴士總站' }] },
+        { time: '10:45', name: '東涌 Citygate Outlets（東薈城名店倉）',
+          desc: 'Coach、Michael Kors、Kate Spade、Polo Ralph Lauren、agnès b 等都在這裡。室內、平路、有座位。午餐也在這裡吃。',
+          maps: [{ q: '東薈城名店倉 東涌 香港' }],
+          img: 'citygate', alt: '東涌東薈城' },
+        { time: '14:30', name: 'S1 巴士回機場',
+          desc: '在東涌站巴士總站坐 S1，約10分鐘到機場。最晚 <strong>15:00 前到機場</strong>。',
+          tip: '不要逛到忘記時間！',
+          maps: [{ q: '東涌站巴士總站 香港' }] },
+        { time: '15:00', name: '機場 T1 過關、登機',
+          desc: '已經有登機證和寄好行李，直接過關。',
+          maps: [{ q: '香港國際機場 一號客運大樓' }] },
+        { time: '17:30', name: '國泰航班起飛',
+          desc: '21:35 抵達吉隆坡 KUL T1。一路順風！',
+          maps: [{ q: '香港國際機場 一號客運大樓' }] }
+      ]
+    }
+  ];
+
+  var TAB_IDS = ['d1', 'd2', 'd3', 'd4', 'd5', 'info'];
+  var STORE_KEY = 'hk2027-tab';
+
+  /* ===== 小工具 ===== */
+  var TAXI = [];
+  var USED_PHOTOS = [];
+
+  function mapUrl(q) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+  }
+  function mapButtons(maps) {
+    if (!maps) return '';
+    return maps.map(function (m) {
+      var label = m.label ? '地圖：' + m.label : '地圖';
+      return '<a class="btn btn-map" href="' + mapUrl(m.q) + '" target="_blank" rel="noopener">' +
+             '<span aria-hidden="true">📍</span>' + label + '</a>';
+    }).join('');
+  }
+  function taxiButton(t, label) {
+    if (!t) return '';
+    TAXI.push(t);
+    return '<button type="button" class="btn btn-taxi" data-taxi="' + (TAXI.length - 1) + '">' +
+           (label || '<span aria-hidden="true">🚕</span>給的士司機看') + '</button>';
+  }
+  function photo(slug, alt) {
+    var p = slug && PHOTOS[slug];
+    if (!p) return '';
+    if (USED_PHOTOS.indexOf(slug) < 0) USED_PHOTOS.push(slug);
+    return '<figure class="photo"><img src="images/' + slug + '.jpg" alt="' + alt +
+           '" width="1200" height="675" loading="lazy" decoding="async"></figure>';
+  }
+  function tipBox(tip) {
+    return tip ? '<div class="tip"><span class="label">👴👵 爸媽小提示</span>' + tip + '</div>' : '';
+  }
+  function moreBox(m, cls) {
+    if (!m) return '';
+    return '<details class="more' + (cls ? ' ' + cls : '') + '"><summary><span>' + m.title +
+           '</span><span class="pm" aria-hidden="true"></span></summary><div class="body">' + m.html +
+           (m.img ? photo(m.img, m.alt) : '') +
+           (m.maps ? '<div class="actions">' + mapButtons(m.maps) + '</div>' : '') +
+           '</div></details>';
+  }
+  function actions(s) {
+    var html = mapButtons(s.maps) + taxiButton(s.taxi, s.taxiLabel);
+    return html ? '<div class="actions">' + html + '</div>' : '';
+  }
+
+  function renderStop(s) {
+    var time = s.approx ? '<span class="approx">約</span>' + s.time : s.time;
+    return '<li class="card stop">' +
+      '<div class="stop-head"><div class="time">' + time + '</div><h3>' + s.name + '</h3></div>' +
+      photo(s.img, s.alt) +
+      '<p class="desc">' + s.desc + '</p>' +
+      tipBox(s.tip) + moreBox(s.more) + actions(s) +
+      '</li>';
+  }
+  function renderOption(o, i) {
+    return '<li class="card option">' +
+      '<span class="who">' + o.who + '</span>' +
+      '<h3>' + (i + 1) + '. ' + o.name + '</h3>' +
+      photo(o.img, o.alt) +
+      '<p class="desc">' + o.desc + '</p>' +
+      tipBox(o.tip) + actions(o) +
+      '</li>';
+  }
+
+  function renderDay(d) {
+    var h = '<div class="day-head"><h2><span class="dnum">' + d.num + '</span>' + d.title + '</h2>' +
+            '<p class="theme">' + d.theme + '</p>' +
+            '<span class="lunar">🧧 ' + d.lunar + '</span></div>';
+    if (d.intro) h += '<p class="intro">' + d.intro + '</p>';
+    if (d.alert) h += '<div class="alert">' + d.alert.map(function (a) { return '<p>' + a + '</p>'; }).join('') + '</div>';
+    if (d.options) {
+      h += '<h3 class="section-title">今天可以選的活動</h3>' +
+           '<ol class="stops" style="margin-top:0">' + d.options.map(renderOption).join('') + '</ol>' +
+           '<h3 class="section-title">下午一起</h3>';
+      h += '<ol class="stops" style="margin-top:0">' + d.stops.map(renderStop).join('') + '</ol>';
+    } else {
+      h += '<ol class="stops">' + d.stops.map(renderStop).join('') + '</ol>';
+    }
+    if (d.backup) h += moreBox(d.backup, 'backup');
+    return h;
+  }
+
+  function renderInfo() {
+    return '<div class="day-head"><h2>實用資料</h2></div>' +
+      '<ol class="stops info">' +
+
+      '<li class="card"><h3>✈️ 航班（國泰航空）</h3>' +
+        '<div class="flight"><span class="label">去程</span><span class="date">2月13日（六）</span>' +
+          '<div class="leg"><span class="t">02:55</span>吉隆坡 KUL T1 出發</div>' +
+          '<div class="leg-mid">↓ 直飛 4小時5分</div>' +
+          '<div class="leg"><span class="t">07:00</span>香港 HKG T1 抵達</div>' +
+          '<div class="alert"><p>凌晨的航班：<strong>2月12日（五）晚上</strong>就要出門去機場！</p></div></div>' +
+        '<div class="flight"><span class="label">回程</span><span class="date">2月17日（三）</span>' +
+          '<div class="leg"><span class="t">17:30</span>香港 HKG T1 出發</div>' +
+          '<div class="leg-mid">↓ 直飛 4小時5分</div>' +
+          '<div class="leg"><span class="t">21:35</span>吉隆坡 KUL T1 抵達</div></div>' +
+        '<p>經濟艙，每人 <strong>1 件 23 公斤</strong>寄艙行李，有飛機餐。</p></li>' +
+
+      '<li class="card"><h3>🏨 酒店</h3>' +
+        '<p><strong>香港逸東酒店</strong>（朗廷酒店集團旗下）</p>' +
+        '<p class="big-addr">九龍佐敦彌敦道380號</p>' +
+        '<p>電話：+852 2782 1818</p>' +
+        '<p>房型：逸·雅大床房（可免費取消）。就在佐敦港鐵站旁邊，地庫有美食廣場，對面馬路有 A21 機場巴士站（彌敦酒店站）。</p>' +
+        '<div class="actions">' + taxiButton(HOTEL) + mapButtons([{ q: HOTEL_MAP }]) +
+          '<a class="btn btn-call" href="tel:+85227821818"><span aria-hidden="true">📞</span>打電話給酒店</a></div></li>' +
+
+      '<li class="card"><h3>🧥 天氣與衣著</h3>' +
+        '<p>二月的香港天氣涼，常常有點潮濕，大約 <strong>14–20°C</strong>。早上、晚上會比較冷，山頂和船上更冷。</p>' +
+        '<div class="tip"><span class="label">要帶</span>帶外套、薄羽絨或毛衣，可能有毛毛雨，帶摺傘。</div></li>' +
+
+      '<li class="card"><h3>🧧 農曆新年提示</h3>' +
+        '<p>2027年農曆新年是 2月6日（六）。我們的行程是<strong>年初八到正月十二</strong>，街上還有新年裝飾。</p>' +
+        '<p>公眾假期已經過了，但少數家庭式小店可能還在放新年假——<strong>出發前最好再確認小店有沒有開</strong>。</p>' +
+        '<p>2月14日（日）是<strong>情人節</strong>，晚上餐廳很多人，想坐下吃熱門餐廳要先訂位。</p></li>' +
+
+      '<li class="card"><h3>💳 八達通</h3>' +
+        '<p>坐港鐵、巴士、電車、天星小輪都用八達通，便利店也可以用。到埗後先買好，記得保持有餘額。</p></li>' +
+
+      '<li class="card"><h3>🛂 證件</h3>' +
+        '<p>去澳門（第3天）<strong>一定要帶護照</strong>。馬來西亞護照進澳門免簽。</p></li>' +
+
+      '<li class="card"><h3>☎️ 緊急電話</h3>' +
+        '<p>香港：<strong>999</strong>　澳門：<strong>999</strong></p>' +
+        '<div class="actions"><a class="btn btn-call" href="tel:999"><span aria-hidden="true">📞</span>撥打 999</a></div></li>' +
+
+      '<li class="card"><h3>📝 出發前要訂好</h3>' +
+        '<ul class="checklist">' +
+          '<li>山頂纜車票（2月14日早上的指定時段）</li>' +
+          '<li>澳門船票：去程「上環 → 澳門外港」、回程「氹仔 → 上環」（2月15日）</li>' +
+          '<li>情人節晚餐訂位（2月14日，尖沙咀）</li>' +
+          '<li>最後一晚全家晚餐（2月16日，尖沙咀）</li>' +
+        '</ul></li>' +
+
+      '</ol>';
+  }
+
+  function renderCredits() {
+    if (!USED_PHOTOS.length) return '';
+    return '<section class="credits"><h2>相片來源</h2><ol>' +
+      USED_PHOTOS.map(function (slug) {
+        var p = PHOTOS[slug];
+        return '<li>' + p.what + '：' + p.author + '，' +
+               (p.licenseUrl ? '<a href="' + p.licenseUrl + '" target="_blank" rel="noopener">' + p.license + '</a>' : p.license) +
+               '，<a href="' + p.page + '" target="_blank" rel="noopener">Wikimedia Commons</a></li>';
+      }).join('') + '</ol></section>';
+  }
+
+  /* ===== 建立頁面 ===== */
+  var tabsEl = document.getElementById('tabs');
+  var mainEl = document.getElementById('main');
+  var todayId = todayTab();
+
+  var tabHtml = '', panelHtml = '';
+  DAYS.forEach(function (d) {
+    tabHtml += '<button type="button" class="tab" role="tab" id="tab-' + d.id + '" aria-controls="' + d.id +
+               '" aria-selected="false" tabindex="-1">' + d.tab + '<span class="d">' + d.date + '</span>' +
+               (todayId === d.id ? '<span class="today">今天</span>' : '') + '</button>';
+    panelHtml += '<section class="panel" role="tabpanel" id="' + d.id + '" aria-labelledby="tab-' + d.id + '" hidden>' +
+                 renderDay(d) + '</section>';
+  });
+  tabHtml += '<button type="button" class="tab" role="tab" id="tab-info" aria-controls="info" aria-selected="false" tabindex="-1">實用<span class="d">資料</span></button>';
+  panelHtml += '<section class="panel" role="tabpanel" id="info" aria-labelledby="tab-info" hidden>' + renderInfo() + '</section>';
+
+  tabsEl.innerHTML = tabHtml;
+  mainEl.innerHTML = panelHtml;
+  document.getElementById('footer').innerHTML = renderCredits();
+
+  /* ===== 倒數 ===== */
+  (function () {
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var start = new Date(2027, 1, 13);
+    var diff = Math.round((start - today) / 86400000);
+    var el = document.getElementById('count');
+    if (diff > 1) el.textContent = '距離出發還有 ' + diff + ' 天';
+    else if (diff === 1) el.textContent = '今晚出發！半夜12點前到機場';
+    else if (todayId) el.textContent = '今天是' + todayId.replace('d', '第') + '天，玩得開心！';
+  })();
+
+  /* ===== 分頁 ===== */
+  function todayTab() {
+    var n = new Date();
+    if (n.getFullYear() === 2027 && n.getMonth() === 1 && n.getDate() >= 13 && n.getDate() <= 17) {
+      return 'd' + (n.getDate() - 12);
+    }
+    return null;
+  }
+
+  function showTab(id, opts) {
+    opts = opts || {};
+    TAB_IDS.forEach(function (t) {
+      var tab = document.getElementById('tab-' + t);
+      var panel = document.getElementById(t);
+      var on = t === id;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      panel.hidden = !on;
+    });
+    var active = document.getElementById('tab-' + id);
+    // 把選中的分頁捲到看得見的位置
+    var box = tabsEl;
+    var left = active.offsetLeft - (box.clientWidth - active.offsetWidth) / 2;
+    box.scrollLeft = Math.max(0, left);
+    if (opts.focus) active.focus();
+    if (opts.save) {
+      try { localStorage.setItem(STORE_KEY, id); } catch (e) { /* 儲存被封鎖也沒關係 */ }
+    }
+    if (opts.scroll) {
+      var nav = document.querySelector('.tabs');
+      var top = mainEl.getBoundingClientRect().top + window.pageYOffset - nav.offsetHeight;
+      if (window.pageYOffset > top) window.scrollTo(0, top);
+    }
+  }
+
+  function initialTab() {
+    var h = (location.hash || '').replace('#', '');
+    if (TAB_IDS.indexOf(h) >= 0) return h;
+    if (todayId) return todayId;
+    try {
+      var s = localStorage.getItem(STORE_KEY);
+      if (s && TAB_IDS.indexOf(s) >= 0) return s;
+    } catch (e) { /* 儲存被封鎖 */ }
+    return 'd1';
+  }
+
+  tabsEl.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.tab') : null;
+    if (!btn) return;
+    showTab(btn.id.replace('tab-', ''), { save: true, scroll: true });
+  });
+  tabsEl.addEventListener('keydown', function (e) {
+    var cur = TAB_IDS.indexOf(document.activeElement.id.replace('tab-', ''));
+    if (cur < 0) return;
+    var next = null;
+    if (e.key === 'ArrowRight') next = (cur + 1) % TAB_IDS.length;
+    else if (e.key === 'ArrowLeft') next = (cur - 1 + TAB_IDS.length) % TAB_IDS.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = TAB_IDS.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    showTab(TAB_IDS[next], { save: true, focus: true });
+  });
+
+  showTab(initialTab());
+
+  /* ===== 給的士司機看 ===== */
+  var overlay = document.getElementById('taxi');
+  var closeBtn = document.getElementById('taxi-close');
+  var opener = null;
+  var pushed = false;
+
+  function openTaxi(t, from) {
+    document.getElementById('taxi-dest').textContent = t.name;
+    document.getElementById('taxi-addr').textContent = t.addr;
+    opener = from;
+    overlay.hidden = false;
+    overlay.classList.add('open');
+    document.body.classList.add('locked');
+    overlay.scrollTop = 0;
+    closeBtn.focus();
+    // 讓手機的「返回」鍵只關閉卡片，不會離開網頁
+    try { history.pushState({ taxi: true }, ''); pushed = true; } catch (e) { pushed = false; }
+  }
+  function hideTaxi() {
+    overlay.classList.remove('open');
+    overlay.hidden = true;
+    document.body.classList.remove('locked');
+    if (opener) opener.focus();
+  }
+  function closeTaxi() {
+    if (overlay.hidden) return;
+    if (pushed) { pushed = false; history.back(); } else { hideTaxi(); }
+  }
+  window.addEventListener('popstate', function () {
+    if (!overlay.hidden) { pushed = false; hideTaxi(); }
+  });
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-taxi]') : null;
+    if (btn) openTaxi(TAXI[+btn.getAttribute('data-taxi')], btn);
+  });
+  closeBtn.addEventListener('click', closeTaxi);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeTaxi();
+  });
+  overlay.addEventListener('keydown', function (e) {
+    if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+  });
+})();
+</script>
+</body>
+</html>
