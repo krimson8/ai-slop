@@ -156,6 +156,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
 .credits ol{margin:0;padding-left:1.4em}
 .credits li{margin:0 0 6px}
 .credits a{color:var(--ink2)}
+.updated{font-size:18px;margin:16px 0 0}
 
 @media (min-width:700px){
   .hero h1{font-size:46px}
@@ -497,6 +498,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
     }
   ];
 
+  var UPDATED = '2026年10月11日';
   var TAB_IDS = ['d1', 'd2', 'd3', 'd4', 'd5', 'info'];
   var STORE_KEY = 'hk2027-tab';
 
@@ -666,7 +668,8 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
 
   tabsEl.innerHTML = tabHtml;
   mainEl.innerHTML = panelHtml;
-  document.getElementById('footer').innerHTML = renderCredits();
+  document.getElementById('footer').innerHTML = renderCredits() +
+    '<p class="updated">最後更新：' + UPDATED + '</p>';
 
   /* ===== 倒數 ===== */
   (function () {
