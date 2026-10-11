@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="香港家庭遊 2027">
 <meta property="og:description" content="2月13日至17日 · 逸東酒店 · 國泰航空。每天的行程、地圖，還有給的士司機看的地址。">
-<meta property="og:image" content="https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/International_Commerce_Centre_on_Victoria_Harbour.jpg/960px-International_Commerce_Centre_on_Victoria_Harbour.jpg">
+<meta property="og:image" content="https://hk-family-2027.vercel.app/images/peak-view.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%AE%3C/text%3E%3C/svg%3E">
 <style>
 :root{
@@ -202,9 +202,8 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
 (function () {
   'use strict';
 
-  /* ===== 相片（來自 Wikimedia Commons；沒有列在這裡的就不顯示相片） =====
-     f: Commons 檔案路徑（雜湊目錄/檔名），直接用 Wikimedia 的 960px 縮圖 */
-  var WM_THUMB = 'https://thumb.wikimedia.org/wikipedia/commons/thumb/';
+  /* ===== 相片（來自 Wikimedia Commons，存在 images/<slug>.jpg；沒有列在這裡的就不顯示相片） =====
+     f: Commons 檔案路徑（雜湊目錄/檔名），用來連結相片來源頁 */
   var LICENSES = {
     'CC0': 'https://creativecommons.org/publicdomain/zero/1.0/',
     'CC BY 2.0': 'https://creativecommons.org/licenses/by/2.0/',
@@ -215,35 +214,34 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
     'CC BY-SA 4.0': 'https://creativecommons.org/licenses/by-sa/4.0/'
   };
   var PHOTOS = {
-    'airport':         { what: '香港國際機場', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '8/83/Aeropuerto_de_Hong_Kong%2C_2013-08-13%2C_DD_01.JPG' },
-    'australia-dairy': { what: '澳洲牛奶公司', by: '圍棋一級', lic: 'CC BY-SA 3.0', f: '3/39/Australia_Dairy_Company_outlook.JPG' },
-    'avenue-of-stars': { what: '星光大道', by: 'Alexkom000', lic: 'CC BY 4.0', f: '0/01/2024-12-27_Avenue_of_Stars%2C_Hong_Kong.jpg' },
-    'temple-street':   { what: '廟街夜市', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '7/73/Mercado_en_Temple_St.%2C_Hong_Kong%2C_2013-08-11%2C_DD_01.JPG' },
-    'claypot':         { what: '煲仔飯', by: 'Ceeseven', lic: 'CC BY-SA 4.0', f: 'a/a9/Spare_Rib_%26_Chicken_Feet_Claypot_Rice.jpg' },
-    'tong-sui':        { what: '糖水', by: 'Ceeseven', lic: 'CC BY-SA 4.0', f: '6/6b/Black_Glutinous_Rice_Tong_Sui.JPG' },
-    'peak-tram':       { what: '山頂纜車', by: 'Ank Kumar', lic: 'CC BY-SA 4.0', f: '1/15/The_Peak_Tram%2C_Hong_Kong_%28Ank_Kumar%29_01.jpg' },
-    'peak-view':       { what: '山頂看維港', by: 'Ralf Roletschek', lic: 'CC BY-SA 3.0', f: 'f/f7/13-08-09-peak-by-RalfR-04.jpg' },
-    'dim-sum':         { what: '蓮香樓', by: 'Xuthoria', lic: 'CC BY-SA 4.0', f: '1/17/Hong_Kong_2026_-_Lin_Heung_Lau_02.jpg' },
-    'tram':            { what: '叮叮電車', by: 'Ralf Roletschek', lic: 'CC BY 3.0', f: 'd/dd/13-08-09-hongkong-by-RalfR-023.jpg' },
-    'causeway-bay':    { what: '銅鑼灣時代廣場', by: 'MOSCKAI Yinam', lic: 'CC BY-SA 4.0', f: '5/5b/HK_CWB_%E9%8A%85%E9%91%BC%E7%81%A3_Causeway_Bay_%E9%8A%85%E9%91%BC%E7%81%A3%E6%99%82%E4%BB%A3%E5%BB%A3%E5%A0%B4_Times_Square_shopping_mall_Food_Forum_%E8%8B%B1%E7%9A%87%E6%88%B2%E9%99%A2_Emperor_Cinemas_November_2022_Px3_03.jpg' },
-    'star-ferry':      { what: '天星小輪', by: 'Chi King', lic: 'CC BY 2.0', f: 'a/a3/Star_Ferry_%28HONG_KONG%29_III_%28674275112%29.jpg' },
-    'symphony':        { what: '維港夜景', by: 'Wilfredor', lic: 'CC0', f: '5/51/International_Commerce_Centre_on_Victoria_Harbour.jpg' },
-    'turbojet':        { what: '噴射飛航', by: 'T1NH0', lic: 'CC BY-SA 3.0', f: 'f/f2/TurboJET_-_Universal_MK_2004.jpg' },
-    'ruins-st-pauls':  { what: '大三巴牌坊', by: 'BenjPhoto', lic: 'CC BY-SA 4.0', f: '5/55/The_Ruins_of_St._Paul%27s_in_Macau.jpg' },
-    'egg-tart':        { what: '葡撻', by: 'LN9267', lic: 'CC BY-SA 4.0', f: 'c/c2/Macau_Tower_Patisserie_Portuguese_Custard_Tart_05-02-2023.jpg' },
-    'venetian':        { what: '澳門威尼斯人', by: 'Syced', lic: 'CC0', f: '3/31/Venetian_%2898716%29.jpg' },
-    'ngong-ping':      { what: '天壇大佛', by: 'Béria Lima de Rodríguez', lic: 'CC BY-SA 3.0', f: '1/13/Tian_Tan_Buddha_by_Beria.jpg' },
-    'horizon-plaza':   { what: '鴨脷洲利榮街', by: 'Naniujoa SIG chsdi', lic: 'CC BY-SA 4.0', f: 'f/f6/HK_ALC_%E9%B4%A8%E8%84%B7%E6%B4%B2_Ap_Lei_Chau_%E5%88%A9%E6%A6%AE%E8%A1%97_Lee_Wing_Street_January_2021_SSG_06.jpg' },
-    'harbour-city':    { what: '尖沙咀與維港', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '5/5e/Vista_del_Puerto_de_Victoria_desde_Sky100%2C_Hong_Kong%2C_2013-08-09%2C_DD_10.JPG' },
-    'yau-ma-tei':      { what: '油麻地果欄', by: 'Jonashtand', lic: 'CC BY-SA 4.0', f: '5/5f/202303_Yau_Ma_Tei_Fruit_Market_%28%E6%B2%B9%E9%BA%BB%E5%9C%B0%E6%9E%9C%E6%AC%84%29.jpg' },
-    'wong-tai-sin':    { what: '黃大仙祠', by: 'CEphoto, Uwe Aranas', lic: 'CC BY-SA 3.0', f: '6/6d/Hong_Kong_China_Wong-Tai-Sin-Temple-01.jpg' },
-    'kowloon-park':    { what: '九龍公園', by: 'Baycrest', lic: 'CC BY-SA 2.5', f: '9/98/Kowloon_Park_201008.jpg' },
-    'kowloon-station': { what: '九龍站機場快線', by: 'Qwer132477', lic: 'CC BY-SA 4.0', f: '2/27/Kowloon_Station_Airport_Express_platforms_2022_06_part3.jpg' }
+    'airport':          { what: '香港國際機場', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '8/83/Aeropuerto_de_Hong_Kong%2C_2013-08-13%2C_DD_01.JPG' },
+    'australia-dairy':  { what: '澳洲牛奶公司', by: '圍棋一級', lic: 'CC BY-SA 3.0', f: '3/39/Australia_Dairy_Company_outlook.JPG' },
+    'avenue-of-stars':  { what: '星光大道', by: 'Alexkom000', lic: 'CC BY 4.0', f: '0/01/2024-12-27_Avenue_of_Stars%2C_Hong_Kong.jpg' },
+    'temple-street':    { what: '廟街夜市', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '7/73/Mercado_en_Temple_St.%2C_Hong_Kong%2C_2013-08-11%2C_DD_01.JPG' },
+    'claypot':          { what: '煲仔飯', by: 'Ceeseven', lic: 'CC BY-SA 4.0', f: 'a/a9/Spare_Rib_%26_Chicken_Feet_Claypot_Rice.jpg' },
+    'tong-sui':         { what: '番薯糖水', by: 'Chiam wingwhuoang Haagem', lic: 'CC BY-SA 4.0', f: '4/4d/HK_KTD_%E8%A7%80%E5%A1%98%E5%8D%80_Kwun_Tong_Sau_Mau_Ping_%E5%AE%89%E6%B3%B0%E9%82%A8_On_Tai_Estate_shop_%E5%90%8D%E8%88%AB%E9%85%92%E5%AE%B6_Famous_Restaurant_food_Sweet_potato_soup_January_2022_Px3_02.jpg' },
+    'peak-tram':        { what: '山頂纜車', by: 'Ank Kumar', lic: 'CC BY-SA 4.0', f: '1/15/The_Peak_Tram%2C_Hong_Kong_%28Ank_Kumar%29_01.jpg' },
+    'peak-view':        { what: '山頂看維港', by: 'Exploringlife', lic: 'CC BY-SA 4.0', f: 'a/a2/Overlook_Hong_Kong_Island_north_coast%2C_Victoria_Harbour_and_Kowloon_from_middle_section_of_Lugard_Road_at_daytime_%28enlarged_version_and_better_contrast%2C_revised%29.jpg' },
+    'dim-sum':          { what: '點心', by: 'Peachyeung316', lic: 'CC BY-SA 4.0', f: '6/69/Eight_selection_of_Dim_Sum_in_Hong_Kong.jpg' },
+    'tram':             { what: '叮叮電車', by: 'Ralf Roletschek', lic: 'CC BY 3.0', f: 'd/dd/13-08-09-hongkong-by-RalfR-023.jpg' },
+    'causeway-bay':     { what: '銅鑼灣時代廣場', by: 'Wpcpey', lic: 'CC BY-SA 4.0', f: '8/8a/Times_Square_Plaza_view_2012.JPG' },
+    'star-ferry':       { what: '天星小輪', by: 'Chi King', lic: 'CC BY 2.0', f: 'a/a3/Star_Ferry_%28HONG_KONG%29_III_%28674275112%29.jpg' },
+    'symphony':         { what: '維港夜景', by: 'Wilfredor', lic: 'CC0', f: '5/51/International_Commerce_Centre_on_Victoria_Harbour.jpg' },
+    'turbojet':         { what: '噴射飛航', by: 'T1NH0', lic: 'CC BY-SA 3.0', f: 'f/f2/TurboJET_-_Universal_MK_2004.jpg' },
+    'ruins-st-pauls':   { what: '大三巴牌坊', by: 'lumoplank', lic: 'CC0', f: 'c/cd/Macao%2C_Part_III_-_Macau8690.jpg' },
+    'egg-tart':         { what: '葡撻', by: 'Grancdzoe LSORUMFAI', lic: 'CC BY-SA 4.0', f: 'b/b8/HK_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E4%BF%A1%E5%BE%B7%E4%B8%AD%E5%BF%83_%E5%95%86%E5%A0%B4_Shun_Tak_Centre_mall_shop_%E6%BE%B3%E9%96%80%E8%8C%B6%E9%A4%90%E5%BB%B3_Macau_Restaurant_food_Pastel_de_nata_eggtarts_February_2019_IX2_01.jpg' },
+    'venetian':         { what: '澳門威尼斯人', by: 'Syced', lic: 'CC0', f: '3/31/Venetian_%2898716%29.jpg' },
+    'ngong-ping':       { what: '天壇大佛', by: 'Béria Lima de Rodríguez', lic: 'CC BY-SA 3.0', f: '1/13/Tian_Tan_Buddha_by_Beria.jpg' },
+    'horizon-plaza':    { what: '海怡工貿中心', by: 'Naniujoa SIG chsdi', lic: 'CC BY-SA 4.0', f: 'f/f6/HK_ALC_%E9%B4%A8%E8%84%B7%E6%B4%B2_Ap_Lei_Chau_%E5%88%A9%E6%A6%AE%E8%A1%97_Lee_Wing_Street_January_2021_SSG_06.jpg' },
+    'harbour-city':     { what: '尖沙咀與維港', by: 'Diego Delso', lic: 'CC BY-SA 3.0', f: '5/5e/Vista_del_Puerto_de_Victoria_desde_Sky100%2C_Hong_Kong%2C_2013-08-09%2C_DD_10.JPG' },
+    'yau-ma-tei':       { what: '油麻地果欄', by: 'Wpcpey', lic: 'CC BY 4.0', f: '1/15/Yau_Ma_Tei_Wholesale_Fruit_Market_view1_202005.jpg' },
+    'wong-tai-sin':     { what: '黃大仙祠', by: 'CEphoto, Uwe Aranas', lic: 'CC BY-SA 3.0', f: '6/6d/Hong_Kong_China_Wong-Tai-Sin-Temple-01.jpg' },
+    'kowloon-park':     { what: '九龍公園', by: 'Baycrest', lic: 'CC BY-SA 2.5', f: '9/98/Kowloon_Park_201008.jpg' },
+    'kowloon-station':  { what: '九龍站機場快線', by: 'Qwer132477', lic: 'CC BY-SA 4.0', f: '2/27/Kowloon_Station_Airport_Express_platforms_2022_06_part3.jpg' },
+    'citygate':         { what: '東薈城名店倉', by: 'Qwer132477', lic: 'CC BY-SA 4.0', f: '0/0f/Citygate_Outlets_In_Tung_Chung_2021_03_part1.jpg' }
   };
   function photoSrc(slug) {
-    var p = PHOTOS[slug];
-    if (!p.f) return 'images/' + slug + '.jpg';
-    return WM_THUMB + p.f + '/960px-' + p.f.split('/')[2];
+    return 'images/' + slug + '.jpg';
   }
   function photoPage(p) {
     return 'https://commons.wikimedia.org/wiki/File:' + p.f.split('/')[2];
@@ -308,7 +306,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
         { time: '20:30', name: '甜品：佳佳甜品',
           desc: '米其林推介的老字號糖水店，芝麻糊、杏仁糊、湯圓都暖胃。2025年已搬到<strong>白加士街新店</strong>（不是舊的寧波街舖），酒店走路幾分鐘。',
           maps: [{ q: '佳佳甜品 白加士街 佐敦 香港' }],
-          img: 'tong-sui', alt: '一碗糖水' }
+          img: 'tong-sui', alt: '一碗番薯糖水' }
       ]
     },
     {
@@ -338,7 +336,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
           tip: '如果有點心車經過，直接揭蓋看，喜歡就拿。',
           taxi: { name: '蓮香樓', addr: '上環德輔道中249–251號 東寧大廈' },
           maps: [{ q: '蓮香樓 德輔道中249號 上環 香港' }],
-          img: 'dim-sum', alt: '蓮香樓' },
+          img: 'dim-sum', alt: '一籠點心' },
         { time: '14:30', name: '叮叮電車（上環 → 銅鑼灣）',
           desc: '蓮香樓門前的德輔道中就有電車經過。坐往東走、車頭寫「<strong>筲箕灣</strong>」或「<strong>北角</strong>」的電車，坐上層前排，全程坐著看街景，約40分鐘到銅鑼灣。用八達通付款。',
           tip: '上層樓梯窄，扶好扶手；不想上樓坐下層也可以。後門上車、前門下車，下車時拍八達通。',
@@ -397,7 +395,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
         { time: '12:30', name: '午餐：澳門葡國菜',
           desc: '試試葡國雞、馬介休、葡撻。',
           maps: [{ q: '葡國菜 議事亭前地 澳門' }],
-          img: 'egg-tart', alt: '剛出爐的葡撻' },
+          img: 'egg-tart', alt: '一盤剛出爐的葡撻' },
         { time: '14:30', name: '威尼斯人／倫敦人',
           desc: '從市中心坐的士約20分鐘到路氹。全室內、平路、有暖氣，有很多座位可以休息。',
           taxi: { name: '澳門威尼斯人', addr: '路氹金光大道' },
@@ -435,7 +433,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
           tip: '整棟樓上上落落比較累，建議早上去、帶水。',
           taxi: { name: '海怡工貿中心', addr: '鴨脷洲利榮街2號' },
           maps: [{ q: '海怡工貿中心 鴨脷洲 香港' }],
-          img: 'horizon-plaza', alt: '鴨脷洲利榮街，海怡工貿中心就在這條街' },
+          img: 'horizon-plaza', alt: '海怡工貿中心門口（利榮街2號）' },
         { who: '適合媽媽（輕鬆版）', name: '掃貨：尖沙咀海港城',
           desc: '酒店附近就有，品牌多，室內有座位，不用跑遠。',
           maps: [{ q: '海港城 尖沙咀 廣東道 香港' }],
@@ -483,7 +481,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
         { time: '10:45', name: '東涌 Citygate Outlets（東薈城名店倉）',
           desc: 'Coach、Michael Kors、Kate Spade、Polo Ralph Lauren、agnès b 等都在這裡。室內、平路、有座位。午餐也在這裡吃。',
           maps: [{ q: '東薈城名店倉 東涌 香港' }],
-          img: 'citygate', alt: '東涌東薈城' },
+          img: 'citygate', alt: '東涌東薈城名店倉' },
         { time: '14:30', name: 'S1 巴士回機場',
           desc: '在東涌站巴士總站坐 S1，約10分鐘到機場。最晚 <strong>15:00 前到機場</strong>。',
           tip: '不要逛到忘記時間！',
@@ -529,7 +527,7 @@ footer{max-width:760px;margin:0 auto;padding:8px 16px 40px;color:var(--ink2)}
     if (USED_PHOTOS.indexOf(slug) < 0) USED_PHOTOS.push(slug);
     var src = photoSrc(slug);
     return '<figure class="photo"><img src="' + src + '" alt="' + alt +
-           '" width="1200" height="675" loading="lazy" decoding="async" referrerpolicy="no-referrer"></figure>';
+           '" width="1200" height="675" loading="lazy" decoding="async"></figure>';
   }
   function tipBox(tip) {
     return tip ? '<div class="tip"><span class="label">👴👵 爸媽小提示</span>' + tip + '</div>' : '';
